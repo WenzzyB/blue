@@ -1,47 +1,7 @@
-#(GLOBAL) {
-	RewriteEngine on
-	RewriteBase /
-#}
+AddDefaultCharset utf-8
 
+RewriteEngine on
 
-
-
-
-#(Pages) {
-	RewriteRule ^admin$ index.php?page=admin [L]
-	RewriteRule ^index$ index.php?page=index [L]
-#}
-
-
-
-
-#(ERRORS){
-	#(Not Found) {
-
-		ErrorDocument 404 /index\.php?page=404
-
-	#}
-
-	#(Forbidden) {
-
-		ErrorDocument 403 /index\.php?page=403
-
-	#}
-
-	#(Too Many Requests) {
-
-		ErrorDocument 429 /index\.php?page=429
-
-	#}
-
-	#(Internal Server Error) {
-
-		ErrorDocument 500 /index\.php?page=500
-
-	#}
-
-	#(Bad Gateway) {
-		ErrorDocument 502 /index\.php?page=502
-	#}
-
-#}
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php
