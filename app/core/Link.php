@@ -11,6 +11,7 @@ class Link
 	private $GLOBAL_CONFIG = [];
 
 	public function __construct() {
+		
 		$this->connect();
 	}
 
@@ -22,10 +23,10 @@ class Link
 			if(file_exists($this->path_lang)) {
 				$this->lang = require_once($this->path_lang);
 			} else {
-				Error::print('E_4', 'default');
+				Error::print('E_4');
 			}
 		} else {
-			Error::print('E_3', 'default');
+			Error::print('E_3');
 		}
 		
 		

@@ -1,13 +1,17 @@
 <?php
 namespace app\render;
 use app\core\Link;
+use app\controllers\Controller;
 use app\dev\Error;
 use app\dev\Debug;
-class Render 
+class Render extends Controller
 {
 	private $render = '';
 	private $path;
 	public function __construct() {
+		//$link = new Link;
+		//$this->GLOBAL_CONFIG = $link->getCFG();
+		//$this->lang = $link->getLang();
 		//Debug::print($this->GLOBAL_CONFIG);
 		//$this->path = 'view/templates/'. $this->GLOBAL_CONFIG['template'].'/';
 	}
@@ -17,9 +21,10 @@ class Render
 	}
 	public function renderError($error) 
 	{
-		if (!empty($this->lang)) {
+		/*if (!empty($this->lang)) {
 			echo $this->lang[$error];
-		}
+		}*/
+		//Debug::print( $this->lang);
 	}
 	public function renderHeader() 
 	{
