@@ -4,5 +4,6 @@ return [
 	'charset' => 'utf-8',
 	'lang' => 'RU',
 	'region' => 'SNG',
-	'timezone' => 'MSK'
+	'timezone' => 'MSK',
+	'default_tpl_names' => 'blue'
 ];

@@ -1,38 +1,41 @@
 <?php
 namespace app\core;
 use app\dev\Error;
-abstract class Link 
+use app\dev\Debug;
+class Link 
 {
-	protected $path_cfg = 'app/config/config.php';
-	protected $path_lang = 'app/default/default_lang.php';
+	private $path_cfg = 'app/config/config.php';
+	private $path_lang;
 
-	protected $lang = [];
-	protected $GLOBAL_CONFIG = [];
+	private $lang = [];
+	private $GLOBAL_CONFIG = [];
 
-	public function __construct() 
-	{
-		$this->connectCFG();
-		$this->connectLANG();
-		$this->lang = require_once($this->path_lang);
-		
-
+	public function __construct() {
+		$this->connect();
 	}
-	private function connectCFG() 
+
+	public function connect()
 	{
-		if (file_exists($this->path_cfg)){
+		if (file_exists($this->path_cfg)) {
 			$this->GLOBAL_CONFIG = require_once($this->path_cfg);
-			return true;
+			$this->path_lang = 'view/templates/'.$this->GLOBAL_CONFIG['template'].'/lang/'.$this->GLOBAL_CONFIG['lang'].'/lang.php';
+			if(file_exists($this->path_lang)) {
+				$this->lang = require_once($this->path_lang);
+			} else {
+				Error::print('E_4', 'default');
+			}
 		} else {
-			Error::print('E_3');
+			Error::print('E_3', 'default');
 		}
+		
+		
 	}
-	private function connectLANG()
-	{
-		$this->path_lang = 'view/templates/'.$this->GLOBAL_CONFIG['template'].'/lang/'.$this->GLOBAL_CONFIG['lang'].'/lang.php';
-		if(file_exists($this->path_lang)) {
-			$this->lang = require_once($this->path_lang);
-		} else {
-			Error::print('E_4');
-		}
+	public function getLang() {
+		return $this->lang;
+	}
+	public function getCFG() {
+
+		return $this->GLOBAL_CONFIG;
+
 	}
 }

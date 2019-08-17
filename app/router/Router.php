@@ -38,7 +38,7 @@ class Router
 			$path_controller = 'app\controllers\\' . $controller;
 			//Debug::print(class_exists($path_controller));
 			if (class_exists($path_controller)) {
-				$connect = new $path_controller;
+				$connect = new $path_controller($this->uri);
 			} else {
 				Error::print('E_1');
 			}
