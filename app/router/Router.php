@@ -1,6 +1,7 @@
 <?php
 namespace app\router;
 use app\dev\Debug;
+use app\dev\Error;
 class Router 
 {
 	private $uri;
@@ -16,7 +17,7 @@ class Router
 	private function check()
 	{
 		
-		if ($this->uri != '/') {
+		if ($this->uri !== '/') {
 			$this->uri = trim($this->uri, '/');
 		}
 
@@ -33,13 +34,16 @@ class Router
 	private function openController() 
 	{
 		if ($this->check()){
-			$path_controller = 'app\controllers\\' . $this->params['controller'] . 'Controller.php';
+			$controller = ucfirst($this->params['controller']).'Controller';
+			$path_controller = 'app\controllers\\' . $controller;
+			//Debug::print(class_exists($path_controller));
 			if (class_exists($path_controller)) {
-				echo 'ok';
-				//$contr = new $controller;
+				$connect = new $path_controller;
 			} else {
-				echo 'Неа.. : ' . $path_controller;
+				Error::print('E_1');
 			}
+		} else {
+			Error::print('E_2');
 		}
 		
 

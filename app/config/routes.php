@@ -1,20 +1,20 @@
 <?php
 return [
 	'/' => [
-		'controller' => 'Main',
+		'controller' => 'main',
 		'action' => 'main'
 	],
 	'account/login' => [
-		'controller' => 'Account',
+		'controller' => 'account',
 		'action' => 'login'
 	],
 	'account/register' => [
-		'controller' => 'Account',
+		'controller' => 'account',
 		'action' => 'register'
 	],
 	
 	'admin/login' => [
-		'controller' => 'Admin',
+		'controller' => 'admin',
 		'action' => 'login'
 	],
 	
